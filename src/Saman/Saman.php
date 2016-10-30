@@ -75,15 +75,7 @@ class Saman extends PortAbstract implements PortInterface
         $token = $this->refId();
 		$amount = $this->amount;
         $url = $this->gateUrl;
-		// get Token From SamanBank
-		$soapClient = new SoapClient($this->serverTokenUrl);
 
-		if (!$soapClient) {
-			throw new MerchantException("NoSOAP", 407);
-		}
-
-		$resultValue = $soapClient->RequestToken($this->config->get('gateway.saman.merchantId'),$this->refId(),$this->amount);
-		
 		return view('gateway::saman-redirector')->with(compact('url', 'redirectUrl', 'token'));
 	}
 
@@ -173,7 +165,6 @@ class Saman extends PortAbstract implements PortInterface
             $this->refId = Input::get('RefNum');
             $this->trackingCode = Input::get('TRACENO');
             $this->cardNumber = Input::get('SecurePan');
-            
 			$result = $soap->VerifyTransaction($this->refId(),$this->config->get('gateway.saman.merchantId'));
 			if($this->amount != $result){
     			$this->newLog(Enum::TRANSACTION_FAILED, Enum::TRANSACTION_FAILED_TEXT);

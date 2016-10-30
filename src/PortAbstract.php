@@ -4,6 +4,7 @@ namespace Larabookir\Gateway;
 use Illuminate\Support\Facades\Request;
 use Larabookir\Gateway\Enum;
 use Carbon\Carbon;
+use Webpatser\Uuid\Uuid;
 
 abstract class PortAbstract
 {
@@ -44,6 +45,13 @@ abstract class PortAbstract
 	 * @var string
 	 */
 	protected $refId;
+
+    /**
+     * Refrence User Identifier
+     *
+     * @var string
+     */
+	protected $userId;
 
 	/**
 	 * Amount in Rial
@@ -170,6 +178,19 @@ abstract class PortAbstract
 		return $this->set($price);
 	}
 
+    function userId(){
+
+		return $this->userId;
+    }
+    /**
+     * Sets User Identifire
+     * @param $url
+     */
+    function setUserId($userId)
+    {
+        $this->userId = $userId;
+        return $this;
+    }
 	/**
 	 * Return result of payment
 	 * If result is done, return true, otherwise throws an related exception
@@ -183,11 +204,10 @@ abstract class PortAbstract
 	function verify($transaction)
 	{
 		$this->transaction = $transaction;
-		$this->transactionId = intval($transaction->id);
+		$this->transactionId = $transaction->id;
 		$this->amount = intval($transaction->price);
 		$this->refId = $transaction->ref_id;
 	}
-
 	function getTimeId()
 	{
 		$uid = time();
@@ -195,7 +215,11 @@ abstract class PortAbstract
 			$uid = time();
 		return $uid;
 	}
+	function getUUID(){
+		$uuid = Uuid::generate(1);
 
+		return $uuid;
+	}
 	/**
 	 * Insert new transaction to poolport_transactions table
 	 *
@@ -203,16 +227,17 @@ abstract class PortAbstract
 	 */
 	protected function newTransaction()
 	{
-		$uid = $this->getTimeId();
+		$uid = $this->getUUID();
 		$this->transactionId = $this->getTable()->insert([
 			'id' => $uid,
+			'user_id' => $this->userId(),
 			'port' => $this->getPortName(),
 			'price' => $this->amount,
 			'status' => Enum::TRANSACTION_INIT,
 			'ip' => Request::getClientIp(),
 			'created_at' => Carbon::now(),
 			'updated_at' => Carbon::now(),
-		]) ? $uid : null;
+		]) ? $uid->string : null;
 
 		return $this->transactionId;
 	}
