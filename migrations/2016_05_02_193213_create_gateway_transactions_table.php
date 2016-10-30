@@ -22,7 +22,8 @@ class CreateGatewayTransactionsTable extends Migration
 	{
 		Schema::create($this->getTable(), function (Blueprint $table) {
 			$table->engine = "innoDB";
-			$table->bigIncrements('id');
+			$table->uuid('id');
+			$table->uuid('user_id');
 			$table->enum('port', [
 				Enum::MELLAT,
 				Enum::JAHANPAY,
@@ -30,6 +31,7 @@ class CreateGatewayTransactionsTable extends Migration
 				Enum::PASARGAD,
 				Enum::PAYLINE,
 				Enum::SADAD,
+				Enum::SAMAN,
 				Enum::ZARINPAL,
 			]);
 			$table->decimal('price', 15, 2);
@@ -45,6 +47,15 @@ class CreateGatewayTransactionsTable extends Migration
 			$table->dateTime('payment_date')->nullable();
 			$table->nullableTimestamps();
 			$table->softDeletes();
+
+            $table->primary('id');
+
+            $table->index('user_id');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
 		});
 	}
 
