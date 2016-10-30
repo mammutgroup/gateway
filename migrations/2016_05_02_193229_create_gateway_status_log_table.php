@@ -24,11 +24,11 @@ class CreateGatewayStatusLogTable extends Migration
     {
         Schema::create($this->getLogTable(), function (Blueprint $table) {
             $table->engine="innoDB";
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->unsignedInteger('transaction_id');
             $table->string('result_code', 10)->nullable();
             $table->string('result_message', 255)->nullable();
-            $table->timestamp('log_date')->nullable();
+            $table->dateTime('log_date')->nullable();
 
             $table
                 ->foreign('transaction_id')
