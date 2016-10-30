@@ -186,7 +186,7 @@ class Saman extends PortAbstract implements PortInterface
 			$this->transactionSucceed();
 		} else {
 			$this->transactionFailed();
-			throw new SamanException($message['fa'], $statusResult);
+			throw new SamanException('عدم تطابق مبلغ با بانک', $result);
 		}
 	}
 
@@ -198,15 +198,15 @@ class Saman extends PortAbstract implements PortInterface
 	 *
 	 * @return array|null
 	 *
-	 * @throws SadadException
+	 * @throws SamanException
 	 */
 	private function getMessage($code, $message)
 	{
-		$result = SadadResult::codeResponse($code, $message);
+		$result = SamanResult::codeResponse($code, $message);
 		if (!$result) {
 			$result = array(
-				'code' => SadadResult::UNKNOWN_CODE,
-				'message' => SadadResult::UNKNOWN_MESSAGE,
+				'code' => SamanResult::UNKNOWN_CODE,
+				'message' => SamanResult::UNKNOWN_MESSAGE,
 				'fa' => 'خطای ناشناخته',
 				'en' => 'Unknown Error',
 				'retry' => false
