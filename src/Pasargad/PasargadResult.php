@@ -9,106 +9,106 @@ class PasargadResult
 		$state = strtolower((string)$state);
 		switch ($state) {
 			case "canceled by user" :
-				$message = _("Canceled By User");
+				$message = _t("@canceledByUser");
 				break;
 			case "invalid amount" :
-				$message = _("Invalid Amount");
+				$message = _t("@invalidAmount");
 				break;
 			case "invalid transaction" :
-				$message = _("Invalid Transaction");
+				$message = _t("@invalidTransaction");
 				break;
 			case "invalid card number" :
-				$message = _("Invalid Card Number");
+				$message = _t("@invalidCardNumber");
 				break;
 			case "no such issuer" :
-				$message = _("No Such Issuer");
+				$message = _t("@noSuchIssuer");
 				break;
 			case "expired card pick up" :
-				$message = _("Expired Card Pick Up");
+				$message = _t("@expiredCardPickUp");
 				break;
 			case "allowable pin tries exceeded pick up" :
-				$message = _("Allowable PIN Tries Exceeded Pick Up");
+				$message = _t('@allowablePINTriesExceededPickUp');
 				break;
 			case "incorrect pin" :
-				$message = _("Incorrect PIN");
+				$message = _t("@incorrectPIN");
 				break;
 			case "exceeds withdrawal amount limit" :
-				$message = _("Exceeds Withdrawal Amount Limit");
+				$message = _t("@exceedsWithdrawalAmountLimit");
 				break;
 			case "transaction cannot be completed" :
-				$message = _("Transaction Cannot Be Completed");
+				$message = _t("@transactionCannotBeCompleted");
 				break;
 			case "response received too late" :
-				$message = _("Response Received Too Late");
+				$message = _t("@responseReceivedTooLate");
 				break;
 			case "suspected fraud pick up" :
-				$message = _("Suspected Fraud Pick Up");
+				$message = _t("@suspectedFraudPickUp");
 				break;
 			case "no sufficient funds" :
-				$message = _("No Sufficient Funds");
+				$message = _t("@noSufficientFunds");
 				break;
 			case "issuer down slm" :
-				$message = _("Issuer Down Slm");
+				$message = _t("@issuerDownSlm");
 				break;
 			case "tme error" :
-				$message = _("TME Error");
+				$message = _t("@tMEError");
 				break;
 			// errorNumber
 			case "-1" :
-				$message = _("Internal Error");
+				$message = _t("@internalError");
 				break;
 			case "-3" :
-				$message = _("TME Error");
+				$message = _t("@tMEError");
 				break;
 			case "-4" :
-				$message = _("‪Merchant Authentication Failed‬‬");
+				$message = _t("@merchantAuthenticationFailed");
 				break;
 			case "-6" :
-				$message = _("Transaction Refunded");
+				$message = _t("@transactionRefunded");
 				break;
 			case "-7" :
-				$message = _("‫‪Transaction Id Empty");
+				$message = _t("@transactionIdEmpty");
 				break;
 			case "-8" :
-				$message = _("‫‪Parameter is too long");
+				$message = _t("@parameterIsTooLong");
 				break;
 			case "-9" :
-				$message = _("‫‪amount value is invalid");
+				$message = _t("@amountValueIsInvalid");
 				break;
 			case "-10" :
-				$message = _("‫‪Transaction Id Not Base64");
+				$message = _t("@transactionIdNotBase64");
 				break;
 			case "-11" :
-				$message = _("‫‪Parameter is too short");
+				$message = _t("@parameterIsTooShort");
 				break;
 			case "-12" :
-				$message = _("‫‪amount value is invalid");
+				$message = _t("@amountValueIsInvalid");
 				break;
 			case "-13" :
-				$message = _("refund ‫‪amount value is invalid");
+				$message = _t("@refundAmountValueIsInvalid");
 				break;
 			case "-14" :
-				$message = _("Transaction Id invalid");
+				$message = _t("@transactionIdInvalid");
 				break;
 			case "-15" :
-				$message = _("refund ‫‪amount value is float!");
+				$message = _t("@refundAmountValueIsFloat");
 				break;
 			case "-16" :
-				$message = _("Internal Error");
+				$message = _t("@internalError");
 				break;
 			case "-17" :
-				$message = _("refund ‫‪amount is not saman");
+				$message = _t("@refundAmountIsNotSaman");
 				break;
 			case "-18" :
-				$message = _("Merchant IP Invalid");
+				$message = _t("@merchantIPInvalid");
 				break;
 
 			case "refunded amount" :
-				$message = _("Refunded Amount");
+				$message = _t("@refundedAmount");
 				break;
 
 			default :
-				$message = _("UNKOWN_ERROR");
+				$message = _t("@unknownError");
 				break;
 		}
 
